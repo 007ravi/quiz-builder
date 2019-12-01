@@ -1,0 +1,15 @@
+.testkey-body{
+    background: url("../images/test-background.png") no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+.testkey-form {
+    height: 50%;
+    width: 40%;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 25px;
+    margin-top: 160px;
+    margin-left: 400px;
+}
