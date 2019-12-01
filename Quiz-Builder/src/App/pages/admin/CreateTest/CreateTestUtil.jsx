@@ -2,6 +2,9 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 
 const server = "http://localhost:3001";
+let Questions = [];
+let testId = Math.round(new Date().getTime() + (Math.random() * 5));
+let btn = [];
 
 function FetchQuestions(tableBodyDataArray, showTableData) {
     fetch(`${server}/getQuestions`, {
@@ -13,7 +16,7 @@ function FetchQuestions(tableBodyDataArray, showTableData) {
     })
         .then((response) => response.json())
         .then((result) => {
-            if (result.length === 0) { 
+            if (result.length === 0) {
                 tableBodyDataArray.push(
                     <tr>
                         <td colSpan="3">
@@ -28,7 +31,7 @@ function FetchQuestions(tableBodyDataArray, showTableData) {
                     tableBodyDataArray.push(<tr key={i}>
                         <td>{parseInt(i + 1)}</td>
                         <td>{result[i].Question}</td>
-                        <td><Button variant="btn btn-danger" onClick={() => DeleteQuestion(id)}>Delete</Button></td>
+                        <td><Button ref={(ref) => btn[id] = ref} variant="btn btn-outline-success" onClick={() => AddQuestion(id)}>Add Question</Button></td>
                     </tr>)
                 }
             }
@@ -39,26 +42,38 @@ function FetchQuestions(tableBodyDataArray, showTableData) {
         });
 }
 
-function DeleteQuestion(id) {
-    fetch(`${server}/deleteQuestion`, {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            id: id
+function AddQuestion(id) {
+    Questions.push(id);
+    btn[id].setAttribute("class", "btn btn-success");
+    btn[id].setAttribute("disabled", "disabled");
+    btn[id].textContent = "Added";
+}
+
+function createTest(state, showModal) {
+    if (Questions.length > 0) {
+        fetch(`${server}/createTest`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                Title: state.Title,
+                Id: testId,
+                Questions: Questions,
+                Time: state.Time
+            })
         })
-    })
-        .then((response) => response.json())
-        .then((result) => {
-            window.location.reload()
-        })
-        .catch((error) => {
-            console.error(error);
-        });
+            .then((response) => response.json())
+            .then((result) => {
+                state.testKey = testId
+                showModal()
+            })
+    }
+    else { }
 }
 
 export {
-    FetchQuestions
+    FetchQuestions,
+    createTest
 }

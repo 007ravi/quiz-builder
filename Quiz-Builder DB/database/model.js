@@ -17,10 +17,18 @@ const user = new Schema({
 const test = new Schema({
     Title: String,
     Id: String,
-    Questions: [],
-    TestAttendees: []
+    Questions: [{ type: Schema.Types.ObjectId, ref: 'Question' }],
+    Time: Number
 });
 
+const result = new Schema({
+    createdAt: { type: Date, default: Date.now },
+    Percentage: String,
+    User: { type: Schema.Types.ObjectId, ref: 'Users' },
+    Test : { type: Schema.Types.ObjectId, ref: 'Tests' }
+})
+
+module.exports.resultModal = mongoose.model("Results", result, "Results");
 module.exports.userModel = mongoose.model("Users", user, "Users");
 module.exports.questionModel = mongoose.model("Question", question, "Question");
 module.exports.testModel = mongoose.model("Tests", test, "Tests");
