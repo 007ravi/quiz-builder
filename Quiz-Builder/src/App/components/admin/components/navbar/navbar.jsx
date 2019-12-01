@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Button, Navbar, Nav } from 'react-bootstrap';
-import '../../assets/styles/navbar.css';
+import '../../../../assets/styles/navbar.css';
 import AddQuestion from '../AddQuestion/AddQuestion';
 import ViewTests from '../ViewTests/ViewTests';
 

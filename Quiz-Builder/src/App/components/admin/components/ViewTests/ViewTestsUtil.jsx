@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
-import '../../assets/styles/viewTests.css';
+import '../../../../assets/styles/viewTests.css';
 
 const server = "http://localhost:3001";
 let btn = [];

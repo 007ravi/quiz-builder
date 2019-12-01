@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Button, Modal } from 'react-bootstrap';
-import '../../assets/styles/addQuestion.css';
+import '../../../../assets/styles/addQuestion.css';
 import addQuestion from './AddQuestionUtil';
 
 function AddQuestionModal(props) {

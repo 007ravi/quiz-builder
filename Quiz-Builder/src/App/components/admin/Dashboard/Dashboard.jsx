@@ -5,8 +5,8 @@ import addQuestionImage from '../../../assets/images/addQuestion.png';
 import viewQuestionsImage from '../../../assets/images/viewQuestions.png';
 import createTestImage from '../../../assets/images/createTest.png';
 import viewTestsImage from '../../../assets/images/viewTests.png';
-import AddQuestion from '../../../components/AddQuestion/AddQuestion';
-import ViewTests from '../../../components/ViewTests/ViewTests';
+import AddQuestion from '../components/AddQuestion/AddQuestion';
+import ViewTests from '../components/ViewTests/ViewTests';
 
 class DashBoard extends Component {
     state = {
