@@ -17,7 +17,7 @@ function FetchTests(bodyDataArray, showData) {
         .then((result) => {
             if (result.length === 0) {
                 bodyDataArray.push(
-                    <center><h4>Nothing here yet. Create Test first.</h4></center>
+                    <center key="0"><h4>Nothing here yet. Create Test first.</h4></center>
                 )
             }
             else {

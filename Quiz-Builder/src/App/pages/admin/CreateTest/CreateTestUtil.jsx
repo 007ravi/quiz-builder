@@ -27,11 +27,11 @@ function FetchQuestions(tableBodyDataArray, showTableData) {
             }
             else {
                 for (var i = 0; i < result.length; i++) {
-                    let id = result[i]._id;
+                    let Question = result[i];
                     tableBodyDataArray.push(<tr key={i}>
                         <td>{parseInt(i + 1)}</td>
                         <td>{result[i].Question}</td>
-                        <td><Button ref={(ref) => btn[id] = ref} variant="btn btn-outline-success" onClick={() => AddQuestion(id)}>Add Question</Button></td>
+                        <td><Button ref={(ref) => btn[Question._id] = ref} variant="btn btn-outline-success" onClick={() => AddQuestion(Question)}>Add Question</Button></td>
                     </tr>)
                 }
             }
@@ -42,11 +42,11 @@ function FetchQuestions(tableBodyDataArray, showTableData) {
         });
 }
 
-function AddQuestion(id) {
-    Questions.push(id);
-    btn[id].setAttribute("class", "btn btn-success");
-    btn[id].setAttribute("disabled", "disabled");
-    btn[id].textContent = "Added";
+function AddQuestion(Question) {
+    Questions.push(Question);
+    btn[Question._id].setAttribute("class", "btn btn-success");
+    btn[Question._id].setAttribute("disabled", "disabled");
+    btn[Question._id].textContent = "Added";
 }
 
 function createTest(state, showModal) {

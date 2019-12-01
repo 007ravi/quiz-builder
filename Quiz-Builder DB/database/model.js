@@ -17,7 +17,7 @@ const user = new Schema({
 const test = new Schema({
     Title: String,
     Id: String,
-    Questions: [{ type: Schema.Types.ObjectId, ref: 'Question' }],
+    Questions: [{}],
     Time: Number
 });
 

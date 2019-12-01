@@ -94,7 +94,6 @@ router.post("/createTest", (req, res) => {
 
 router.get("/getAllTests", (req, res) => {
     test.find({})
-        .populate('Question')
         .then((data) => {
             res.send(data);
         })
@@ -108,7 +107,6 @@ router.post("/getTest", (req, res) => {
     test.find({
         Id: req.body.Key
     })
-        .populate('Question')
         .then((data) => {
             res.send(data);
         })
