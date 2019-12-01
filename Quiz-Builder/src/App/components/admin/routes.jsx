@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import ViewQuestions from './ViewQuestions/ViewQuestions';
 import CreateTest from './CreateTest/CreateTest';
 import DashBoard from './Dashboard/Dashboard';
+import Result from './Results/Results';
 
 class Routes extends Component {
     render() {
@@ -10,8 +11,9 @@ class Routes extends Component {
             <Router>
                 <Switch>
                     <Route path="/admin" exact component={ DashBoard } />
-                    <Route path="/admin/viewQuestions" exact component={ ViewQuestions } />
-                    <Route path="/admin/createTest" exact component={ CreateTest } />
+                    <Route path="/admin/viewQuestions" component={ ViewQuestions } />
+                    <Route path="/admin/createTest" component={ CreateTest } />
+                    <Route path="/admin/results" component={ Result } />
                 </Switch>
             </Router>
         )

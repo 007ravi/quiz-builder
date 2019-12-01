@@ -6,9 +6,9 @@
 }
   
 .content {
-    width: 800px;
+    width: 90%;
     padding-top: 4vh;
-    position: relative;
+    padding-left: 20vh;
 }
 
 .table-style {

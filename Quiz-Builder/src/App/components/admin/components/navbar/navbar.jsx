@@ -11,8 +11,10 @@ class navbar extends Component {
     }
     render() {
         return (
-            <Navbar bg="dark" variant="dark">
+            <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
                 <Navbar.Brand href="/admin" className="nav-brand">Quiz Builder</Navbar.Brand>
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="mr-auto">
                     <Nav.Link onClick={ () => this.setState({ addQuestionModalShow: true }) }>Add Question</Nav.Link>
                     <Nav.Link href="/admin/viewQuestions">View Questions</Nav.Link>
@@ -22,6 +24,7 @@ class navbar extends Component {
                 <Form inline>
                     <Button variant="outline-light" href="/">Logout</Button>
                 </Form>
+                </Navbar.Collapse>
                 <AddQuestion 
                     addQuestionModalState={ this.state.addQuestionModalShow } 
                     hideAddQuestionModal= { () => this.setState({ addQuestionModalShow: false })} 

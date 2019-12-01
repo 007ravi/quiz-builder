@@ -24,8 +24,8 @@ const test = new Schema({
 const result = new Schema({
     createdAt: { type: Date, default: Date.now },
     Percentage: String,
-    User: { type: Schema.Types.ObjectId, ref: 'Users' },
-    Test : { type: Schema.Types.ObjectId, ref: 'Tests' }
+    UserName: String,
+    TestId: String
 })
 
 module.exports.resultModal = mongoose.model("Results", result, "Results");

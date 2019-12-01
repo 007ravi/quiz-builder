@@ -130,8 +130,6 @@ router.post('/postResult', (req, res) => {
 
 router.post('/getResult', (req, res) => {
     result.find({ TestId: req.body.TestId })
-        .populate('Users')
-        .populate('Tests')
         .then((data) => {
             res.send(data);
         }).catch((err) => {

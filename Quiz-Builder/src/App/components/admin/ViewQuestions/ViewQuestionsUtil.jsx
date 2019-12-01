@@ -59,6 +59,4 @@ function DeleteQuestion(id) {
         });
 }
 
-export {
-    FetchQuestions
-}
+export default FetchQuestions;

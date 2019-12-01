@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import '../../../assets/styles/viewQuestions.css';
+import '../../../assets/styles/viewResults.css';
 import { Table } from 'react-bootstrap';
-import FetchQuestions from './ViewQuestionsUtil';
+import FetchResults from './ResultsUtil';
 
-class ViewQuestions extends Component {
+class Result extends Component {
     tableBodyDataArray = []
     state = {
         bodyData: this.tableBodyDataArray
@@ -16,20 +16,21 @@ class ViewQuestions extends Component {
     }
 
     componentDidMount() {
-        FetchQuestions(this.tableBodyDataArray, this.showData) 
+        FetchResults(this.tableBodyDataArray, this.showData) 
     }
-
+    
     render() {
         return (
             <div className="body">
                 <div className="content">
-                    <h2>Questions:</h2>
+                    <h2>Results:</h2>
                     <Table className="table-style" responsive striped bordered>
                         <thead className="thead-dark">
                             <tr>
                                 <th>S. No.</th>
-                                <th>Question</th>
-                                <th>Operation</th>
+                                <th>User Name</th>
+                                <th>Percentage</th>
+                                <th>Submitted At</th>
                             </tr>
                         </thead>
                         <tbody id="table-body">
@@ -42,4 +43,4 @@ class ViewQuestions extends Component {
     }
 }
 
-export default ViewQuestions;
+export default Result;

@@ -1,19 +1,21 @@
 .dashboard-body{
     background: url("../images/dashboard-background.jpg") no-repeat;
     background-size: cover;
-    height: 91.1vh;
+    min-height: 91.1vh;
 }
   
 .dashboard-content {
     display: flex;
     flex-direction: row;
-    padding-left: 140px;
-    padding-top: 120px;
+    padding-top: 120px; 
+    margin:auto 110px;
+    position: relative;
+    flex-wrap: wrap;
 }
 
 .card-style {
     margin: 20px;
-    width: 15rem;
+    width: 240px;
     box-shadow: 0px 0px 5px 1px #000000;
 }
 
