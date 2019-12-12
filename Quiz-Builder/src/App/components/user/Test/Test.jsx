@@ -1,29 +1,54 @@
 import React, { Component } from 'react';
-import { Form } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
+import '../../../assets/styles/test.css'
+import FetchTest from './TestUtil';
 
 class Test extends Component {
+    cardBodyArray = []
+    time = 0
     state = {
-        testKey: ""
+        testKey: "",
+        testTime: "",
+        testTitle: "",
+        cardBody: this.cardBodyArray
     }
 
     handleInput = (event) => {
         let name = event.target.name;
         let val = event.target.value;
         this.setState({
-          [name]: val
+            [name]: val
         })
     }
 
-    submitKey = () => {
-        // submitKey(this.state.testKey, this.props)
+    showData = () => {
+        this.setState({
+            cardBody: this.cardBodyArray
+        })
+    }
+
+    componentDidMount() {
+        FetchTest(this.cardBodyArray, this.state, this.showData)
+    }
+
+    submitTest = () => {
+
     }
 
     render() {
         return (
-            <div>
-                <Form>
-                    test
-                </Form>
+            <div className="test-body">
+                <div className="test-content">
+                <Card className='test-card-style mx-auto'>
+                    <Card.Body>
+                        <center><h2>{this.state.testTitle}</h2></center>
+                        <hr />
+                        <div className='form-group'>
+                            {this.state.cardBody}
+                        </div>
+                    </Card.Body>
+                </Card>
+                </div>
             </div>
         );
     }
