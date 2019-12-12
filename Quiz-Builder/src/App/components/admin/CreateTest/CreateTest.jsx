@@ -62,7 +62,7 @@ class CreateTest extends Component {
 
     render() {
         return (
-            <div className="container">
+            <div className="create-test-container">
                 <Form>
                     <Form.Group>
                         <Form.Label><h3>Test Title:</h3></Form.Label>

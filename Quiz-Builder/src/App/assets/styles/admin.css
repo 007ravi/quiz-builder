@@ -1,0 +1,5 @@
+.admin-body{
+    background: url("../images/dashboard-background.jpg") no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+}

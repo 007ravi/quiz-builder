@@ -15,41 +15,39 @@ class DashBoard extends Component {
     }
     render() {
         return (
-            <div className="dashboard-body">
-                <div className="dashboard-content">
-                    <Card className="card-style">
-                        <img alt="add Question" className="add-Question" src={ addQuestionImage } />
-                        <Card.Body>
-                            <center><Button className="add-Question-Button" variant="success" onClick={() => this.setState({ addQuestionModalShow: true })}>Add Question</Button></center>
-                        </Card.Body>
-                    </Card>
-                    <Card className="card-style">
-                        <img alt="view Questions" className="view-Questions" src={ viewQuestionsImage } />
-                        <Card.Body>
-                            <center><Button className="view-Questions-Button" variant="success" href="/admin/viewQuestions">View Questions</Button></center>
-                        </Card.Body>
-                    </Card>
-                    <Card className="card-style">
-                        <img alt="create Test" className="create-Test" src={ createTestImage } />
-                        <Card.Body>
-                            <center><Button className="create-Test-Button" variant="success" href="/admin/createTest">Create Test</Button></center>
-                        </Card.Body>
-                    </Card>
-                    <Card className="card-style">
-                        <img alt="view Tests" className="view-Tests" src={ viewTestsImage } />
-                        <Card.Body>
-                            <center><Button className="view-Tests-Button" variant="success" onClick={ () => this.setState({ viewTestsModalShow: true }) }>View Tests</Button></center>
-                        </Card.Body>
-                    </Card>
-                    <AddQuestion 
-                        addQuestionModalState={ this.state.addQuestionModalShow } 
-                        hideAddQuestionModal= { () => this.setState({ addQuestionModalShow: false })}
-                    />
-                    <ViewTests
-                        viewTestsModalState={this.state.viewTestsModalShow}
-                        hideViewTestsModal={() => this.setState({ viewTestsModalShow: false })}
-                    />
-                </div>
+            <div className="dashboard-content">
+                <Card className="card-style">
+                    <img alt="add Question" className="add-Question" src={addQuestionImage} />
+                    <Card.Body>
+                        <center><Button className="add-Question-Button" variant="success" onClick={() => this.setState({ addQuestionModalShow: true })}>Add Question</Button></center>
+                    </Card.Body>
+                </Card>
+                <Card className="card-style">
+                    <img alt="view Questions" className="view-Questions" src={viewQuestionsImage} />
+                    <Card.Body>
+                        <center><Button className="view-Questions-Button" variant="success" href="/admin/viewQuestions">View Questions</Button></center>
+                    </Card.Body>
+                </Card>
+                <Card className="card-style">
+                    <img alt="create Test" className="create-Test" src={createTestImage} />
+                    <Card.Body>
+                        <center><Button className="create-Test-Button" variant="success" href="/admin/createTest">Create Test</Button></center>
+                    </Card.Body>
+                </Card>
+                <Card className="card-style">
+                    <img alt="view Tests" className="view-Tests" src={viewTestsImage} />
+                    <Card.Body>
+                        <center><Button className="view-Tests-Button" variant="success" onClick={() => this.setState({ viewTestsModalShow: true })}>View Tests</Button></center>
+                    </Card.Body>
+                </Card>
+                <AddQuestion
+                    addQuestionModalState={this.state.addQuestionModalShow}
+                    hideAddQuestionModal={() => this.setState({ addQuestionModalShow: false })}
+                />
+                <ViewTests
+                    viewTestsModalState={this.state.viewTestsModalShow}
+                    hideViewTestsModal={() => this.setState({ viewTestsModalShow: false })}
+                />
             </div>
         );
     }

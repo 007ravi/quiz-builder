@@ -1,9 +1,3 @@
-.dashboard-body{
-    background: url("../images/dashboard-background.jpg") no-repeat;
-    background-size: cover;
-    min-height: 91.1vh;
-}
-  
 .dashboard-content {
     display: flex;
     flex-direction: row;

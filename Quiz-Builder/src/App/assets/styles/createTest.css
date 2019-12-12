@@ -1,4 +1,5 @@
-.container {
-    margin-top: 3vh;
+.create-test-container {
     width: 90%;
+    padding-top: 4vh;
+    padding-left: 20vh;
 }

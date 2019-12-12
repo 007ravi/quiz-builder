@@ -1,16 +1,9 @@
-.body{
-    background: url("../images/dashboard-background.jpg") no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    height: 91.1vh;
-}
-  
-.content {
+.result-content {
     width: 90%;
     padding-top: 4vh;
     padding-left: 20vh;
 }
 
-.table-style {
+.result-table-style {
     background-color: white;
 }

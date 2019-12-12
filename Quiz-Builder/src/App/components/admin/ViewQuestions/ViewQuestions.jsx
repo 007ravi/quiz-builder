@@ -16,27 +16,25 @@ class ViewQuestions extends Component {
     }
 
     componentDidMount() {
-        FetchQuestions(this.tableBodyDataArray, this.showData) 
+        FetchQuestions(this.tableBodyDataArray, this.showData)
     }
 
     render() {
         return (
-            <div className="body">
-                <div className="content">
-                    <h2>Questions:</h2>
-                    <Table className="table-style" responsive striped bordered>
-                        <thead className="thead-dark">
-                            <tr>
-                                <th>S. No.</th>
-                                <th>Question</th>
-                                <th>Operation</th>
-                            </tr>
-                        </thead>
-                        <tbody id="table-body">
-                            { this.state.bodyData }
-                        </tbody>
-                    </Table>
-                </div>
+            <div className="view-questions-content">
+                <h2>Questions:</h2>
+                <Table className="view-questions-table-style" responsive striped bordered>
+                    <thead className="thead-dark">
+                        <tr>
+                            <th>S. No.</th>
+                            <th>Question</th>
+                            <th>Operation</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                        {this.state.bodyData}
+                    </tbody>
+                </Table>
             </div>
         )
     }

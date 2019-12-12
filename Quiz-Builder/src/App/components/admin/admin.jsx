@@ -1,11 +1,23 @@
 import React, { Component } from 'react';
 import Navbar from './components/navbar/navbar';
 import Routes from './routes';
+import '../../assets/styles/admin.css'
 
 class Admin extends Component {
+    state = {
+        classname: ""
+    }
+
+    componentWillMount() {
+        if(window.location.pathname === "/admin/createTest")
+            this.setState({ classname: "" })
+        else
+            this.setState({ classname: "admin-body" })
+    }
+
     render() {
         return (
-            <div>
+            <div className={this.state.classname}>
                 <Navbar />
                 <Routes />
             </div>
