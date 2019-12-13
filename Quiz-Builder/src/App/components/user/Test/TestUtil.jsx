@@ -5,7 +5,7 @@ const server = "http://localhost:3001";
 let answers = []
 let score = 0
 
-function FetchTest(cardBodyArray, state, showData, submitTest) {
+function FetchTest(cardBodyArray, state, showData, submitTest, timer) {
     fetch(`${server}/getTest`, {
         method: 'POST',
         headers: {
@@ -18,9 +18,7 @@ function FetchTest(cardBodyArray, state, showData, submitTest) {
     })
         .then((response) => response.json())
         .then((result) => {
-            console.log(result)
             result = result[0]
-            state.time = result.time
             state.testTitle = result.Title
             for (let i = 0; i < result.Questions.length; i++) {
                 cardBodyArray.push(
@@ -45,6 +43,7 @@ function FetchTest(cardBodyArray, state, showData, submitTest) {
             cardBodyArray.push(<br key={`br`} />)
             cardBodyArray.push(<Button key={`button`} className="test-button-style" onClick={ submitTest } variant="outline-success">Submit Test</Button>)
             showData()
+            timer(result.Time)
         })
         .catch((error) => {
             console.error(error);

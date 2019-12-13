@@ -23,7 +23,8 @@ class Test extends Component {
     time = 0
     state = {
         testKey: "",
-        testTime: "",
+        testTimeMins: "",
+        testTimeSecs: "",
         testTitle: "",
         cardBody: this.cardBodyArray,
         SubmitModalShow: false,
@@ -46,12 +47,32 @@ class Test extends Component {
     }
 
     componentDidMount() {
-        FetchTest(this.cardBodyArray, this.state, this.showData, this.submitTest)
+        FetchTest(this.cardBodyArray, this.state, this.showData, this.submitTest, this.timer)
     }
 
     submitTest = () => {
         SubmitTest(this.state)
         this.setState({ SubmitModalShow: true })
+    }
+
+    timer = (time) => {
+        let timeInMinutes = time;
+        let timeInSeconds = (time*60)%60;
+        const timerInterval = setInterval(() => {
+            this.setState({
+                testTimeMins: timeInMinutes,
+                testTimeSecs: timeInSeconds
+            })
+            if (timeInMinutes === 0 && timeInSeconds === 0) {
+                clearInterval(timerInterval);
+                this.submitTest()
+            }
+            else if (timeInSeconds === 0) {
+                timeInMinutes--;
+                timeInSeconds = 60;
+            }
+            timeInSeconds--;
+        }, 1000);
     }
 
     render() {
@@ -60,7 +81,8 @@ class Test extends Component {
                 <div className="test-content">
                     <Card className='test-card-style mx-auto'>
                         <Card.Body>
-                            <center><h2>{this.state.testTitle}</h2></center>
+                            <span className="test-name-style">{this.state.testTitle}</span> 
+                            <span className="test-timer-style">Time Left: {this.state.testTimeMins} Mins {this.state.testTimeSecs} Secs</span>
                             <hr />
                             <div className='form-group'>
                                 {this.state.cardBody}
