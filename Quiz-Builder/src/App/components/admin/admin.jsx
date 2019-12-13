@@ -8,7 +8,7 @@ class Admin extends Component {
         classname: ""
     }
 
-    componentWillMount() {
+    componentDidMount() {
         if(window.location.pathname === "/admin/createTest")
             this.setState({ classname: "" })
         else

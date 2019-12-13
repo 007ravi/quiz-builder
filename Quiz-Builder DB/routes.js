@@ -118,9 +118,10 @@ router.post("/getTest", (req, res) => {
 
 router.post('/postResult', (req, res) => {
     result.create({
-        Test: req.body.TestId,
-        Percentage: req.body.Percentage,
-        User: req.body.UserId
+        TestId: req.body.TestId,
+        Score: req.body.Score,
+        Total: req.body.Total,
+        UserName: req.body.UserName
     }).then(() => {
         res.end("[]");
     }).catch(() => {

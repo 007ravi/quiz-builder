@@ -21,6 +21,7 @@ function loginUser(Credentials, props, showErrorMessage) {
             props.history.push('/admin');
           }
           else {
+            sessionStorage.setItem("username", result.Name);
             props.history.push('/user');
           }
     })

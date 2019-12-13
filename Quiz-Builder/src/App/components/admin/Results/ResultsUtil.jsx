@@ -18,7 +18,7 @@ function FetchResults(tableBodyDataArray, showTableData) {
             if (result.length === 0) { 
                 tableBodyDataArray.push(
                     <tr key="0">
-                        <td colSpan="4">
+                        <td colSpan="5">
                             <center><h3>Nothing here yet.</h3></center>
                         </td>
                     </tr>
@@ -29,8 +29,9 @@ function FetchResults(tableBodyDataArray, showTableData) {
                     tableBodyDataArray.push(<tr key={i}>
                         <td>{parseInt(i + 1)}</td>
                         <td>{result[i].UserName}</td>
-                        <td>{result[i].Percentage}</td>
-                        <td>{result[i].createdAt}</td>
+                        <td>{result[i].Score}</td>
+                        <td>{result[i].Total}</td>
+                        <td>{result[i].CreatedAt}</td>
                     </tr>)
                 }
             }

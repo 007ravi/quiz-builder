@@ -28,7 +28,8 @@ class Result extends Component {
                         <tr>
                             <th>S. No.</th>
                             <th>User Name</th>
-                            <th>Percentage</th>
+                            <th>Marks</th>
+                            <th>Total Marks</th>
                             <th>Submitted At</th>
                         </tr>
                     </thead>

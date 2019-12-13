@@ -22,8 +22,9 @@ const test = new Schema({
 });
 
 const result = new Schema({
-    createdAt: { type: Date, default: Date.now },
-    Percentage: String,
+    CreatedAt: { type: Date, default: Date.now },
+    Score: String,
+    Total: String,
     UserName: String,
     TestId: String
 })
