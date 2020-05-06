@@ -6,7 +6,7 @@ class navbar extends Component {
     render() {
         return (
             <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
-                <Navbar.Brand href="/user" className="nav-brand">Quiz Builder</Navbar.Brand>
+                <Navbar.Brand className="nav-brand">{`Hi, ${sessionStorage.getItem("username")}`}</Navbar.Brand>
                 <Nav className="mr-auto">
                 </Nav>
                 <Form inline>

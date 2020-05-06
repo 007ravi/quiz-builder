@@ -6,12 +6,10 @@ import viewQuestionsImage from '../../../assets/images/viewQuestions.png';
 import createTestImage from '../../../assets/images/createTest.png';
 import viewTestsImage from '../../../assets/images/viewTests.png';
 import AddQuestion from '../components/AddQuestion/AddQuestion';
-import ViewTests from '../components/ViewTests/ViewTests';
 
 class DashBoard extends Component {
     state = {
-        addQuestionModalShow: false,
-        viewTestsModalShow: false
+        addQuestionModalShow: false
     }
     render() {
         return (
@@ -37,16 +35,12 @@ class DashBoard extends Component {
                 <Card className="card-style">
                     <img alt="view Tests" className="view-Tests" src={viewTestsImage} />
                     <Card.Body>
-                        <center><Button className="view-Tests-Button" variant="success" onClick={() => this.setState({ viewTestsModalShow: true })}>View Tests</Button></center>
+                        <center><Button className="view-Tests-Button" variant="success" href="/admin/viewTests">View Tests</Button></center>
                     </Card.Body>
                 </Card>
                 <AddQuestion
                     addQuestionModalState={this.state.addQuestionModalShow}
                     hideAddQuestionModal={() => this.setState({ addQuestionModalShow: false })}
-                />
-                <ViewTests
-                    viewTestsModalState={this.state.viewTestsModalShow}
-                    hideViewTestsModal={() => this.setState({ viewTestsModalShow: false })}
                 />
             </div>
         );

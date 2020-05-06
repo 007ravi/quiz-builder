@@ -4,6 +4,7 @@ import ViewQuestions from './ViewQuestions/ViewQuestions';
 import CreateTest from './CreateTest/CreateTest';
 import DashBoard from './Dashboard/Dashboard';
 import Result from './Results/Results';
+import ViewTests from './ViewTests/ViewTests';
 
 class Routes extends Component {
     render() {
@@ -14,6 +15,7 @@ class Routes extends Component {
                     <Route path="/admin/viewQuestions" component={ ViewQuestions } />
                     <Route path="/admin/createTest" component={ CreateTest } />
                     <Route path="/admin/results" component={ Result } />
+                    <Route path="/admin/viewTests" component={ ViewTests } />
                 </Switch>
             </Router>
         )

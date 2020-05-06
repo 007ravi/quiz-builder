@@ -71,7 +71,7 @@ router.post("/deleteQuestion", (req, res) => {
             res.end(JSON.stringify(data));
         })
         .catch((err) => {
-            console.log("Error in /getQuestions: ", err);
+            console.log("Error in /deleteQuestion: ", err);
             res.end("[]");
         });
 });
@@ -115,6 +115,17 @@ router.post("/getTest", (req, res) => {
             res.end("[]");
         })
 })
+
+router.post("/deleteTest", (req, res) => {
+    test.deleteOne({ Id: req.body.Id })
+        .then((data) => {
+            res.end(JSON.stringify(data));
+        })
+        .catch((err) => {
+            console.log("Error in /deleteTest: ", err);
+            res.end("[]");
+        });
+});
 
 router.post('/postResult', (req, res) => {
     result.create({

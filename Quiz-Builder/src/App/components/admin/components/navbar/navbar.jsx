@@ -2,12 +2,10 @@ import React, { Component } from 'react';
 import { Form, Button, Navbar, Nav } from 'react-bootstrap';
 import '../../../../assets/styles/navbar.css';
 import AddQuestion from '../AddQuestion/AddQuestion';
-import ViewTests from '../ViewTests/ViewTests';
 
 class navbar extends Component {
     state = {
-        addQuestionModalShow: false,
-        viewTestsModalShow: false
+        addQuestionModalShow: false
     }
     render() {
         return (
@@ -19,7 +17,7 @@ class navbar extends Component {
                     <Nav.Link onClick={ () => this.setState({ addQuestionModalShow: true }) }>Add Question</Nav.Link>
                     <Nav.Link href="/admin/viewQuestions">View Questions</Nav.Link>
                     <Nav.Link href="/admin/createTest">Create Test</Nav.Link>
-                    <Nav.Link onClick={ () => this.setState({ viewTestsModalShow: true }) }>View Tests</Nav.Link>
+                    <Nav.Link href="/admin/viewTests">View Tests</Nav.Link>
                 </Nav>
                 <Form inline>
                     <Button variant="outline-light" href="/">Logout</Button>
@@ -28,10 +26,6 @@ class navbar extends Component {
                 <AddQuestion 
                     addQuestionModalState={ this.state.addQuestionModalShow } 
                     hideAddQuestionModal= { () => this.setState({ addQuestionModalShow: false })} 
-                />
-                <ViewTests 
-                    viewTestsModalState={ this.state.viewTestsModalShow } 
-                    hideViewTestsModal= { () => this.setState({ viewTestsModalShow: false })} 
                 />
             </Navbar>
         )
