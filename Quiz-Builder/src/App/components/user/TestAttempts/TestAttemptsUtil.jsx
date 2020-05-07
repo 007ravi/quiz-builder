@@ -3,14 +3,14 @@ import React from 'react';
 const server = "http://localhost:3001";
 
 function FetchResults(tableBodyDataArray, showTableData) {
-    fetch(`${server}/getResult`, {
+    fetch(`${server}/getResultByUser`, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            TestId: sessionStorage.getItem("testId")
+            UserEmail: sessionStorage.getItem("useremail")
         })
     })
         .then((response) => response.json())
@@ -26,9 +26,11 @@ function FetchResults(tableBodyDataArray, showTableData) {
             }
             else {
                 for (var i = 0; i < result.length; i++) {
-                    tableBodyDataArray.push(<tr key={i}>
+                    console.log(result)
+                    tableBodyDataArray.push(
+                    <tr key={i}>
                         <td>{parseInt(i + 1)}</td>
-                        <td>{result[i].User.UserName}</td>
+                        <td>{result[i].Test.Title}</td>
                         <td>{result[i].Score}</td>
                         <td>{result[i].Total}</td>
                         <td>{new Date(result[i].CreatedAt).toDateString()}</td>

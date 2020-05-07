@@ -103,9 +103,22 @@ router.get("/getAllTests", (req, res) => {
         })
 })
 
-router.post("/getTest", (req, res) => {
+router.post("/getTestByKey", (req, res) => {
     test.find({
         Id: req.body.Key
+    })
+        .then((data) => {
+            res.send(data);
+        })
+        .catch((err) => {
+            console.log("Error : " + err);
+            res.end("[]");
+        })
+})
+
+router.post("/getTest", (req, res) => {
+    test.find({
+        _id: req.body.Id
     })
         .then((data) => {
             res.send(data);
@@ -129,10 +142,13 @@ router.post("/deleteTest", (req, res) => {
 
 router.post('/postResult', (req, res) => {
     result.create({
-        TestId: req.body.TestId,
+        Test: req.body.TestId,
         Score: req.body.Score,
         Total: req.body.Total,
-        UserName: req.body.UserName
+        User: {
+            UserName: req.body.User.UserName,
+            UserEmail: req.body.User.UserEmail
+        }
     }).then(() => {
         res.end("[]");
     }).catch(() => {
@@ -141,7 +157,18 @@ router.post('/postResult', (req, res) => {
 })
 
 router.post('/getResult', (req, res) => {
-    result.find({ TestId: req.body.TestId })
+    result.find({ Test: req.body.TestId })
+        .then((data) => {
+            res.send(data);
+        }).catch((err) => {
+            console.log(err);
+            res.end("[]");
+        })
+})
+
+router.post('/getResultByUser', (req, res) => {
+    result.find({ "User.UserEmail": req.body.UserEmail })
+        .populate('Test')
         .then((data) => {
             res.send(data);
         }).catch((err) => {

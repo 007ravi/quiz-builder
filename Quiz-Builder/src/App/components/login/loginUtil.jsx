@@ -22,6 +22,7 @@ function loginUser(Credentials, props, showErrorMessage) {
           }
           else {
             sessionStorage.setItem("username", result.Name);
+            sessionStorage.setItem("useremail", result.Email);
             props.history.push('/user');
           }
     })

@@ -22,11 +22,14 @@ const test = new Schema({
 });
 
 const result = new Schema({
-    CreatedAt: { type: Date, default: Date.now },
     Score: String,
+    CreatedAt: { type: Date, default: Date.now },
     Total: String,
-    UserName: String,
-    TestId: String
+    Test: { type: Schema.Types.ObjectId, ref: 'Tests' },
+    User: {
+        UserName: String,
+        UserEmail: String
+    }
 })
 
 module.exports.resultModal = mongoose.model("Results", result, "Results");

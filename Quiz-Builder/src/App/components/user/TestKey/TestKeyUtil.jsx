@@ -1,7 +1,7 @@
 const server = "http://localhost:3001";
 
 function submitKey(testKey, props) {
-    fetch(`${server}/getTest`, {
+    fetch(`${server}/getTestByKey`, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -14,7 +14,7 @@ function submitKey(testKey, props) {
     .then((response) => response.json())
     .then((result) => {
         if(result.length) {
-            sessionStorage.setItem("testKey", testKey);
+            sessionStorage.setItem("testId", result[0]._id);
             props.history.push('/user/test');
             window.location.reload();
         }

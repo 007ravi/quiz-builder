@@ -1,0 +1,15 @@
+.testAttempts-body{
+    background: url("../images/test-background.png") no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+.testAttempts-content {
+    width: 90%;
+    padding-top: 4vh;
+    padding-left: 20vh;
+}
+
+.testAttempts-table-style {
+    background-color: white;
+}

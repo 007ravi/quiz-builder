@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import Navbar from '../components/navbar/navbar';
 import { Table } from 'react-bootstrap';
-import FetchTests from './DashBoardUtil';
-import '../../../assets/styles/userDashboard.css';
+import FetchTests from './AvailableTestsUtil';
+import '../../../assets/styles/availableTests.css';
 
-class Dashboard extends Component {
+class AvailableTests extends Component {
     tableBodyDataArray = []
     state = {
         bodyData: this.tableBodyDataArray
@@ -22,7 +22,7 @@ class Dashboard extends Component {
 
     render() {
         return (
-            <div className="userDashboard-body">
+            <div className="availableTests-body">
                 <Navbar />
                 <div className="result-content">
                     <h2>Tests:</h2>
@@ -45,4 +45,4 @@ class Dashboard extends Component {
     }
 }
 
-export default Dashboard;
+export default AvailableTests;

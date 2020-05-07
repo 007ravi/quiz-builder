@@ -13,7 +13,7 @@ function FetchTest(cardBodyArray, state, showData, submitTest, timer) {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            Key: sessionStorage.getItem("testKey")
+            Id: sessionStorage.getItem("testId")
         })
     })
         .then((response) => response.json())
@@ -67,10 +67,13 @@ function SubmitTest(state) {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            TestId: sessionStorage.getItem("testKey"),
+            TestId: sessionStorage.getItem("testId"),
             Score: score,
             Total: answers.length,
-            UserName: sessionStorage.getItem("username")
+            User : {
+                UserName: sessionStorage.getItem("username"),
+                UserEmail: sessionStorage.getItem("useremail")
+            }
         })
     })
         .then((response) => response.json())

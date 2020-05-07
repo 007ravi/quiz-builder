@@ -25,6 +25,7 @@ function FetchTests(bodyDataArray, showData) {
             else {
                 for (var i = 0; i < result.length; i++) {
                     let id = result[i].Id
+                    let _id = result[i]._id
                     bodyDataArray.push(
                         <tr key={i}>
                         <td>{parseInt(i + 1)}</td>
@@ -32,8 +33,8 @@ function FetchTests(bodyDataArray, showData) {
                         <td>{result[i].Id}</td>
                         <td>
                             <Button
-                                href="/admin/results"  variant="primary"
-                                onClick={() => sessionStorage.setItem("testId", id)}>
+                                href="/admin/results" variant="primary"
+                                onClick={() => sessionStorage.setItem("testId", _id)}>
                                 View Result
                             </Button>
                         </td>
