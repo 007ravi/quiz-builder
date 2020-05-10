@@ -78,8 +78,28 @@ function SubmitTest(state) {
     })
         .then((response) => response.json())
         .then((result) => {
-            sessionStorage.clear()
+            sendMail(state)
         })
+}
+
+const sendMail = (state) => {
+    fetch(`${server}/sendMail`, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            testTitle: state.testTitle,
+            score: state.score,
+            total: state.total,
+            userEmail: sessionStorage.getItem("useremail")
+        })
+    })
+        .then((response) => response.json())
+        .then((result) => {
+            
+        })    
 }
 
 export {

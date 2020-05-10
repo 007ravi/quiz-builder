@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import Test from './Test/Test';
 import TestKey from './TestKey/TestKey';
 import Submitted from './Submitted/Submitted';
@@ -12,10 +12,13 @@ class Routes extends Component {
             <Router>
                 <Switch>
                     <Route path="/user" exact component={ AvailableTests } />
-                    <Route path="/user/testAttempts" exact component={ TestAttempts } />
-                    <Route path="/user/testkey" exact component={ TestKey } />
+                    <Route path="/user/testAttempts" component={ TestAttempts } />
+                    <Route path="/user/testkey" component={ TestKey } />
                     <Route path="/user/test" component={ Test } />
                     <Route path="/user/submitted" component={ Submitted } />
+                    <Route path="*">
+                        <Redirect to="/user" />
+                    </Route>
                 </Switch>
             </Router>
         )

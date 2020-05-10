@@ -10,7 +10,7 @@ const question = new Schema({
 const user = new Schema({
     Name: String,
     Password: String,
-    Email: String,
+    Email: { type:String, unique: true },
     Type: String
 });
 

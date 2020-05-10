@@ -12,7 +12,7 @@ class navbar extends Component {
                     <Nav.Link href="/user/testAttempts">Test Attempts</Nav.Link>
                 </Nav>
                 <Form inline>
-                    <Button variant="outline-light" href="/">Logout</Button>
+                    <Button variant="outline-light" onClick={ () => { sessionStorage.clear() } } href="/">Logout</Button>
                 </Form>
             </Navbar>
         )

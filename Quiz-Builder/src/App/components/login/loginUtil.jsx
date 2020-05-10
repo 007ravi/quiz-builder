@@ -18,11 +18,13 @@ function loginUser(Credentials, props, showErrorMessage) {
             showErrorMessage();
           }
           else if (result.Type === "Admin") {
+            sessionStorage.setItem("loginStatus", "admin");
             props.history.push('/admin');
           }
           else {
             sessionStorage.setItem("username", result.Name);
             sessionStorage.setItem("useremail", result.Email);
+            sessionStorage.setItem("loginStatus", "user");
             props.history.push('/user');
           }
     })
@@ -31,7 +33,7 @@ function loginUser(Credentials, props, showErrorMessage) {
     });
 }
 
-function registerUser(Credentials) {
+function registerUser(Credentials, state, showErrorMessage, onRegister) {
     fetch(`${server}/registerUser`, {
         method: 'POST',
         headers: {
@@ -46,6 +48,18 @@ function registerUser(Credentials) {
         })
     })
     .then((response) => response.json())
+    .then((result) => {
+        if(result.status === false) {
+            if(result.errCode === 11000)
+                state.registerErrorMessage = "Email already Registered.";
+            else
+                state.registerErrorMessage = "Error while registering. Try again!"
+            showErrorMessage();
+        }
+        else {
+            onRegister();
+        }
+    })
     .catch((error) => {
         console.error(error);
     });

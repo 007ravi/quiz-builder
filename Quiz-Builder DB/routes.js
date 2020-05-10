@@ -4,6 +4,7 @@ var user = require('./database/model.js').userModel;
 var question = require('./database/model.js').questionModel;
 var test = require('./database/model.js').testModel;
 var result = require('./database/model.js').resultModal;
+var nodemailer = require('nodemailer');
 
 router.post("/loginUser", (req, res) => {
     user.find({
@@ -31,11 +32,19 @@ router.post("/registerUser", (req, res) => {
         Type: req.body.Type
     })
         .then((data) => {
-            res.end("registered");
+            res.end(JSON.stringify({
+                status: true
+            }));
         })
         .catch((err) => {
-            console.log("Error While adding User: ", err);
-            res.end("[]");
+            if(err.code === 11000)
+                console.log("Error while registering user: need unique email");
+            else 
+                console.log("Error while registering user: ", err);
+            res.end(JSON.stringify({
+                status: false,
+                errCode: err.code
+            }));
         })
 });
 
@@ -175,6 +184,34 @@ router.post('/getResultByUser', (req, res) => {
             console.log(err);
             res.end("[]");
         })
+})
+
+router.post('/sendMail', (req, res) => {
+    var transporter = nodemailer.createTransport({
+        service: "Yandex",
+        auth: {
+            user: "quizb",
+            pass: "Bc^ag6PhbE_jA9F"
+        }
+    });
+
+    const mailOptions = {
+        from: 'quizb@yandex.com',
+        to: `${req.body.userEmail}`,
+        subject: 'Test Result',
+        text: `${req.body.testTitle} Result.
+        Your Marks: ${req.body.score}
+        Total Marks: ${req.body.total}`
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent to ' + req.userEmail + ' : ' + info.response);
+        }
+        res.end("[]");
+    });
 })
 
 module.exports = router;

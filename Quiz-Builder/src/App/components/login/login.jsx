@@ -99,6 +99,11 @@ class Login extends Component {
     }, this.props, this.showErrorMessage)
   }
 
+  onRegister = () => {
+    this.setState({ modalShow: false });
+    this.setState({ regMessageModalShow: true });
+  }
+
   registerUser = () => {
     if (this.state.Name === '') {
       this.setState({
@@ -125,13 +130,11 @@ class Login extends Component {
       this.showErrorMessage();
     }
     else {
-      this.setState({ modalShow: false });
-      this.setState({ regMessageModalShow: true });
       registerUser({
         Name: this.state.Name,
         Email: this.state.Email,
-        Password: this.state.Password
-      })
+        Password: this.state.Password,
+      }, this.state, this.showErrorMessage, this.onRegister)
     }
   }
 
