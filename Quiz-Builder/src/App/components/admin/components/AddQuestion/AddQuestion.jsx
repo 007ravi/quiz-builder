@@ -17,6 +17,15 @@ function AddQuestionModal(props) {
             <Modal.Body>
                 <Form>
                     <Form.Group>
+                        <Form.Label>Branch:</Form.Label>
+                        <Form.Control name="Branch" as="select">
+                            <option value="CSE" defaultValue>CSE</option>
+                            <option value="CE">CE</option>
+                            <option value="ME">ME</option>
+                            <option value="ECE">ECE</option>
+                        </Form.Control>
+                    </Form.Group>
+                    <Form.Group>
                         <Form.Label>Question:</Form.Label>
                         <Form.Control name="Question" type="text" placeholder="Enter Question" />
                     </Form.Group>
@@ -55,7 +64,8 @@ class AddQuestion extends Component {
         Option2: '',
         Option3: '',
         Option4: '',
-        Answer: '1'
+        Answer: '1',
+        Branch: 'CSE'
     }
 
     handleQuestions = (event) => {
@@ -64,14 +74,15 @@ class AddQuestion extends Component {
         this.setState({
             [name]: val
         })
-    } 
+    }
 
     addQuestion = () => {
         this.setState(this.props.hideAddQuestionModal)
         addQuestion({
             Question: this.state.Question,
             CorrectAnswerNo: this.state.Answer,
-            Options: [ this.state.Option1, this.state.Option2, this.state.Option3, this.state.Option4 ]
+            Options: [this.state.Option1, this.state.Option2, this.state.Option3, this.state.Option4],
+            Branch: this.state.Branch
         })
     }
 
@@ -79,10 +90,18 @@ class AddQuestion extends Component {
         return (
             <AddQuestionModal
                 show={this.props.addQuestionModalState}
-                onHide={() => { this.setState(this.props.hideAddQuestionModal) }}
+                onHide={() => {
+                    this.setState(this.props.hideAddQuestionModal);
+                    this.setState({
+                        Answer: '1', Branch: 'CSE'
+                    })
+                }}
                 onChange={this.handleQuestions}
                 onSubmit={() => {
                     this.setState(this.addQuestion()); 
+                    this.setState({
+                        Answer: '1', Branch: 'CSE'
+                    })
                 }}
             />
         )

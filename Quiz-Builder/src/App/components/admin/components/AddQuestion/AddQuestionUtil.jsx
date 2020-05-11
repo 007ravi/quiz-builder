@@ -10,10 +10,15 @@ function addQuestion(QuestionObject) {
         body: JSON.stringify({
             Question: QuestionObject.Question,
             CorrectAnswerNo: QuestionObject.CorrectAnswerNo,
-            Options: QuestionObject.Options
+            Options: QuestionObject.Options,
+            Branch: QuestionObject.Branch
         })
     })
     .then((response) => response.json())
+    .then((result) => {
+        if (window.location.pathname === "/admin/createTest")
+            window.location.reload();
+    })
     .catch((error) => {
         console.error(error);
     });

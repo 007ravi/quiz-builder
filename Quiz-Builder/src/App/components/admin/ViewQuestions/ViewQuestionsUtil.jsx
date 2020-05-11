@@ -3,13 +3,16 @@ import { Button } from 'react-bootstrap';
 
 import { server } from '../../../config/server.json';
 
-function FetchQuestions(tableBodyDataArray, showTableData) {
-    fetch(`${server}/getQuestions`, {
-        method: 'GET',
+function FetchQuestions(tableBodyDataArray, showTableData, Branch) {
+    fetch(`${server}/getQuestionsByBranch`, {
+        method: 'POST',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-        }
+        },
+        body: JSON.stringify({
+            Branch: Branch
+        })
     })
         .then((response) => response.json())
         .then((result) => {

@@ -4,21 +4,24 @@ const Schema = mongoose.Schema;
 const question = new Schema({
     Question: String,
     Options: [],
-    CorrectAnswerNo: Number
+    CorrectAnswerNo: Number,
+    Branch: String
 });
 
 const user = new Schema({
     Name: String,
     Password: String,
     Email: { type:String, unique: true },
-    Type: String
+    Type: String,
+    Branch: String
 });
 
 const test = new Schema({
     Title: String,
     Id: String,
     Questions: [{}],
-    Time: Number
+    Time: Number,
+    Branch: String
 });
 
 const result = new Schema({

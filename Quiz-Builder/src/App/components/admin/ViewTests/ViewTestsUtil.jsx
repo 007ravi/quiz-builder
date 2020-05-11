@@ -3,21 +3,24 @@ import { Button } from 'react-bootstrap';
 
 import { server } from '../../../config/server.json';
 
-function FetchTests(bodyDataArray, showData) {
-    fetch(`${server}/getAllTests`, {
-        method: 'GET',
+function FetchTests(bodyDataArray, showData, Branch) {
+    fetch(`${server}/getTestsByBranch`, {
+        method: 'POST',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-        }
+        },
+        body: JSON.stringify({
+            Branch: Branch
+        })
     })
         .then((response) => response.json())
         .then((result) => {
             if (result.length === 0) { 
                 bodyDataArray.push(
                     <tr>
-                        <td colSpan="3">
-                            <center><h3>Nothing here yet. Add some Questions.</h3></center>
+                        <td colSpan="5">
+                            <center><h3>Nothing here yet. Create Test First.</h3></center>
                         </td>
                     </tr>
                 )

@@ -29,7 +29,8 @@ router.post("/registerUser", (req, res) => {
         Name: req.body.Name,
         Password: req.body.Password,
         Email: req.body.Email,
-        Type: req.body.Type
+        Type: req.body.Type,
+        Branch: req.body.Branch
     })
         .then((data) => {
             res.end(JSON.stringify({
@@ -52,13 +53,14 @@ router.post("/addQuestion", (req, res) => {
     question.create({
         Question: req.body.Question,
         CorrectAnswerNo: req.body.CorrectAnswerNo,
-        Options: req.body.Options
+        Options: req.body.Options,
+        Branch: req.body.Branch
     })
         .then((data) => {
-            res.end(data);
+            res.end(JSON.stringify(data));
         })
         .catch((err) => {
-            console.log("Error While adding User: ", err);
+            console.log("Error While adding Question: ", err);
             res.end("[]");
         })
 });
@@ -70,6 +72,17 @@ router.get("/getQuestions", (req, res) => {
         })
         .catch((err) => {
             console.log("Error in /getQuestions: ", err);
+            res.end("[]");
+        });
+});
+
+router.post("/getQuestionsByBranch", (req, res) => {
+    question.find({Branch: req.body.Branch})
+        .then((data) => {
+            res.end(JSON.stringify(data));
+        })
+        .catch((err) => {
+            console.log("Error in /getQuestionsByBranch: ", err);
             res.end("[]");
         });
 });
@@ -90,10 +103,11 @@ router.post("/createTest", (req, res) => {
         Title: req.body.Title,
         Id: req.body.Id,
         Questions: req.body.Questions,
-        Time: req.body.Time
+        Time: req.body.Time,
+        Branch: req.body.Branch
     })
         .then((data) => {
-            res.end(data);
+            res.end(JSON.stringify(data));
         })
         .catch((err) => {
             console.log("Error in /createTest: ", err);
@@ -104,7 +118,18 @@ router.post("/createTest", (req, res) => {
 router.get("/getAllTests", (req, res) => {
     test.find({})
         .then((data) => {
-            res.send(data);
+            res.send(JSON.stringify(data));
+        })
+        .catch((err) => {
+            console.log("Consoling Error : " + err);
+            res.end("[]");
+        })
+})
+
+router.post("/getTestsByBranch", (req, res) => {
+    test.find({Branch: req.body.Branch})
+        .then((data) => {
+            res.send(JSON.stringify(data));
         })
         .catch((err) => {
             console.log("Consoling Error : " + err);
@@ -117,7 +142,7 @@ router.post("/getTestByKey", (req, res) => {
         Id: req.body.Key
     })
         .then((data) => {
-            res.send(data);
+            res.send(JSON.stringify(data));
         })
         .catch((err) => {
             console.log("Error : " + err);
@@ -130,7 +155,7 @@ router.post("/getTest", (req, res) => {
         _id: req.body.Id
     })
         .then((data) => {
-            res.send(data);
+            res.send(JSON.stringify(data));
         })
         .catch((err) => {
             console.log("Error : " + err);
@@ -168,7 +193,7 @@ router.post('/postResult', (req, res) => {
 router.post('/getResult', (req, res) => {
     result.find({ Test: req.body.TestId })
         .then((data) => {
-            res.send(data);
+            res.send(JSON.stringify(data));
         }).catch((err) => {
             console.log(err);
             res.end("[]");
@@ -179,7 +204,7 @@ router.post('/getResultByUser', (req, res) => {
     result.find({ "User.UserEmail": req.body.UserEmail })
         .populate('Test')
         .then((data) => {
-            res.send(data);
+            res.send(JSON.stringify(data));
         }).catch((err) => {
             console.log(err);
             res.end("[]");

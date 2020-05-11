@@ -6,13 +6,16 @@ let Questions = [];
 let testId = Math.round(new Date().getTime() + (Math.random() * 5));
 let btn = [];
 
-function FetchQuestions(tableBodyDataArray, showTableData) {
-    fetch(`${server}/getQuestions`, {
-        method: 'GET',
+function FetchQuestions(tableBodyDataArray, showTableData, Branch) {
+    fetch(`${server}/getQuestionsByBranch`, {
+        method: 'POST',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-        }
+        },
+        body: JSON.stringify({
+            Branch: Branch
+        })
     })
         .then((response) => response.json())
         .then((result) => {
@@ -61,13 +64,13 @@ function createTest(state, showModal) {
                 Title: state.Title,
                 Id: testId,
                 Questions: Questions,
-                Time: state.Time
+                Time: state.Time,
+                Branch: state.Branch
             })
         })
             .then((response) => response.json())
             .then((result) => {
-                state.testKey = testId
-                showModal()
+                showModal(testId)
             })
     }
     else { }

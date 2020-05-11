@@ -29,15 +29,20 @@ class CreateTest extends Component {
         testMessageModalShow: false,
         Title: "",
         Time: "",
-        testKey: ""
+        testKey: "",
+        Branch: "CSE"
     }
 
-    handleFormInputs = (event) => {
+    handleFormInputs = async(event) => {
         let name = event.target.name;
         let val = event.target.value;
-        this.setState({
+        await this.setState({
             [name]: val
         })
+        if(name === "Branch") {
+            this.tableBodyDataArray= []
+            FetchQuestions(this.tableBodyDataArray, this.showData, this.state.Branch)
+        }
     }
 
     showData = () => {
@@ -46,18 +51,20 @@ class CreateTest extends Component {
         })
     }
 
-    showModal = () => {
+    showModal = (testKey) => {
         this.setState({
+            testKey,
             testMessageModalShow: true
         })
     }
 
     createTest = () => {
         createTest(this.state , this.showModal)
+        this.setState({Branch: "CSE"})
     }
 
     componentDidMount() {
-        FetchQuestions(this.tableBodyDataArray, this.showData)
+        FetchQuestions(this.tableBodyDataArray, this.showData, this.state.Branch)
     }
 
     render() {
@@ -71,6 +78,15 @@ class CreateTest extends Component {
                     <Form.Group>
                         <Form.Label><h3>Test Time:</h3></Form.Label>
                         <Form.Control name="Time" type="number" placeholder="Enter Test Time(In Minutes)" onChange={this.handleFormInputs} />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label><h3>Branch:</h3></Form.Label>
+                        <Form.Control name="Branch" as="select" onChange={this.handleFormInputs}>
+                            <option value="CSE" defaultValue>CSE</option>
+                            <option value="CE">CE</option>
+                            <option value="ME">ME</option>
+                            <option value="ECE">ECE</option>
+                        </Form.Control>
                     </Form.Group>
                     <h3>Select Questions:</h3>
                     <Table className="table-style" responsive striped bordered>
@@ -94,7 +110,7 @@ class CreateTest extends Component {
                             this.setState({ testMessageModalShow: false })
                             window.location.reload();
                         }}
-                        testkey={this.state.testKey }
+                        testkey={this.state.testKey}
                     />
                 </Form>
             </div>

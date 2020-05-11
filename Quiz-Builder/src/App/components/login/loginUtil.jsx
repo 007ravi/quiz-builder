@@ -24,6 +24,7 @@ function loginUser(Credentials, props, showErrorMessage) {
           else {
             sessionStorage.setItem("username", result.Name);
             sessionStorage.setItem("useremail", result.Email);
+            sessionStorage.setItem("userbranch", result.Branch);
             sessionStorage.setItem("loginStatus", "user");
             props.history.push('/user');
           }
@@ -44,7 +45,8 @@ function registerUser(Credentials, state, showErrorMessage, onRegister) {
             Name: Credentials.Name,
             Email: Credentials.Email,
             Password: Credentials.Password,
-            Type: "User"
+            Type: "User",
+            Branch: Credentials.Branch
         })
     })
     .then((response) => response.json())

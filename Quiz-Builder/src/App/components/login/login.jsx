@@ -49,6 +49,15 @@ function MyVerticallyCenteredModal(props) {
             <Form.Label>Confirm Password</Form.Label>
             <Form.Control name="ConfirmPassword" type="password" placeholder="Confirm Password" />
           </Form.Group>
+          <Form.Group>
+            <Form.Label>Branch:</Form.Label>
+            <Form.Control name="Branch" as="select">
+              <option value="CSE" defaultValue>CSE</option>
+              <option value="CE">CE</option>
+              <option value="ME">ME</option>
+              <option value="ECE">ECE</option>
+            </Form.Control>
+          </Form.Group>
           <Button variant="primary" onClick={props.onSubmit} >
             Register
             </Button>
@@ -69,6 +78,7 @@ class Login extends Component {
     Email: '',
     Password: '',
     ConfirmPassword: '',
+    Branch: 'CSE',
     messageStyle: {
       display: 'none'
     },
@@ -136,6 +146,7 @@ class Login extends Component {
         Name: this.state.Name,
         Email: this.state.Email,
         Password: this.state.Password,
+        Branch: this.state.Branch
       }, this.state, this.showErrorMessage, this.onRegister)
     }
   }
@@ -162,7 +173,7 @@ class Login extends Component {
               <span className="login-message" style={this.state.messageStyle}>
                 Wrong Username Or Password
               </span>
-              <Button variant="primary" onClick={() => { this.setState({ modalShow: true }) }}>
+              <Button variant="primary" onClick={() => { this.setState({ modalShow: true, Branch: 'CSE' }) }}>
                 Register
               </Button>
             </div>

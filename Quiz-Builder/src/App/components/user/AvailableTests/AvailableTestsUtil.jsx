@@ -4,12 +4,15 @@ import { Button } from 'react-bootstrap';
 import { server } from '../../../config/server.json';
 
 function FetchTests(tableBodyDataArray, showTableData) {
-    fetch(`${server}/getAllTests`, {
-        method: 'GET',
+    fetch(`${server}/getTestsByBranch`, {
+        method: 'POST',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
         },
+        body: JSON.stringify({
+            Branch: sessionStorage.getItem("userbranch")
+        })
     })
         .then((response) => response.json())
         .then((result) => {
