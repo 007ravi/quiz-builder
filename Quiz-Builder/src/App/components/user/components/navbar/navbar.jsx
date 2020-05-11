@@ -7,6 +7,8 @@ class navbar extends Component {
         return (
             <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
                 <Navbar.Brand className="nav-brand">{`Hi, ${sessionStorage.getItem("username")}`}</Navbar.Brand>
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="mr-auto">
                     <Nav.Link href="/user">Available Tests</Nav.Link>
                     <Nav.Link href="/user/testAttempts">Test Attempts</Nav.Link>
@@ -14,6 +16,7 @@ class navbar extends Component {
                 <Form inline>
                     <Button variant="outline-light" onClick={ () => { sessionStorage.clear() } } href="/">Logout</Button>
                 </Form>
+                </Navbar.Collapse>
             </Navbar>
         )
     }

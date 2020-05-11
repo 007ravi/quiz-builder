@@ -1,4 +1,4 @@
-const server = "http://localhost:3001";
+import { server } from '../../config/server.json';
 
 function loginUser(Credentials, props, showErrorMessage) {
     fetch(`${server}/loginUser`, {

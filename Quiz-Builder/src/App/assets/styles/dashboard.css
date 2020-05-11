@@ -1,9 +1,8 @@
 .dashboard-content {
     display: flex;
     flex-direction: row;
-    padding-top: 120px; 
-    margin:auto 110px;
-    position: relative;
+    justify-content: center;
+    padding-top: 10vh; 
     flex-wrap: wrap;
 }
 

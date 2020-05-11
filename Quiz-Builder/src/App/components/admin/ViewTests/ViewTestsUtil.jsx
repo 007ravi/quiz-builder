@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 
-const server = "http://localhost:3001";
+import { server } from '../../../config/server.json';
 
 function FetchTests(bodyDataArray, showData) {
     fetch(`${server}/getAllTests`, {

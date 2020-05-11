@@ -1,6 +1,6 @@
 import React from 'react';
 
-const server = "http://localhost:3001";
+import { server } from '../../../config/server.json';
 
 function FetchResults(tableBodyDataArray, showTableData) {
     fetch(`${server}/getResultByUser`, {

@@ -10,7 +10,7 @@ class Admin extends Component {
 
     componentDidMount() {
         if(window.location.pathname === "/admin/createTest")
-            this.setState({ classname: "" })
+            this.setState({ classname: "admin-body-no-image" })
         else
             this.setState({ classname: "admin-body" })
     }

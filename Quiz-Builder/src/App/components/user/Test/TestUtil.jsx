@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
 
-const server = "http://localhost:3001";
+import { server } from '../../../config/server.json';
 let answers = []
 let score = 0
 

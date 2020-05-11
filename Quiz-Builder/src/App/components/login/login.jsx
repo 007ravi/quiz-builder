@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import "../../assets/styles/login.css";
-import { Form, Button, Modal } from 'react-bootstrap';
+import { Form, Button, Modal, Card } from 'react-bootstrap';
 import { loginUser, registerUser } from './loginUtil';
 
 function RegisterationMessageModal(props) {
@@ -14,10 +14,10 @@ function RegisterationMessageModal(props) {
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={ props.onHide }>Close</Button>
+        <Button variant="secondary" onClick={props.onHide}>Close</Button>
       </Modal.Footer>
     </Modal>
-  ); 
+  );
 }
 
 function MyVerticallyCenteredModal(props) {
@@ -51,7 +51,7 @@ function MyVerticallyCenteredModal(props) {
           </Form.Group>
           <Button variant="primary" onClick={props.onSubmit} >
             Register
-          </Button>
+            </Button>
           <span className="register-message" style={props.messagestyle}>
             {props.errormessage}
           </span>
@@ -87,9 +87,11 @@ class Login extends Component {
   }
 
   showErrorMessage = () => {
-    this.setState({messageStyle : {
-      display: ''
-    }})
+    this.setState({
+      messageStyle: {
+        display: ''
+      }
+    })
   }
 
   loginUser = () => {
@@ -141,7 +143,7 @@ class Login extends Component {
   render() {
     return (
       <div className="login-body">
-        <div className="login-content">
+        <Card body className="login-card">
           <Form className="form">
             <h1 className="title">Quiz Builder Login</h1>
             <Form.Group>
@@ -153,29 +155,31 @@ class Login extends Component {
               <Form.Label>Password</Form.Label>
               <Form.Control name="Password" type="password" placeholder="Password" onChange={this.handleLoginCredentials} />
             </Form.Group>
-            <Button variant="primary" onClick={this.loginUser}>
-              Login
-            </Button>
-            <span className="login-message" style={this.state.messageStyle}>
-              Wrong Username Or Password
-            </span>
-            <Button className="register-button" variant="primary" onClick={() => { this.setState({ modalShow: true }) }}>
-              Register
-            </Button>
+            <div className="login-card-footer">
+              <Button variant="primary" onClick={this.loginUser}>
+                Login
+              </Button>
+              <span className="login-message" style={this.state.messageStyle}>
+                Wrong Username Or Password
+              </span>
+              <Button variant="primary" onClick={() => { this.setState({ modalShow: true }) }}>
+                Register
+              </Button>
+            </div>
             <MyVerticallyCenteredModal
               show={this.state.modalShow}
-              onHide={() => { 
+              onHide={() => {
                 this.setState({ modalShow: false })
                 this.setState({
                   messageStyle: {
                     display: 'none'
                   }
                 })
-             }}
+              }}
               onChange={this.handleLoginCredentials}
               onSubmit={() => {
-                 this.setState(this.registerUser()); 
-                }}
+                this.setState(this.registerUser());
+              }}
               errormessage={this.state.registerErrorMessage}
               messagestyle={this.state.messageStyle}
             />
@@ -184,7 +188,7 @@ class Login extends Component {
               onHide={() => { this.setState({ regMessageModalShow: false }) }}
             />
           </Form>
-        </div>
+        </Card>
       </div>
     );
   }

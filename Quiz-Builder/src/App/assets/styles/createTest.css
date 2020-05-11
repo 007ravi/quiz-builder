@@ -1,5 +1,11 @@
 .create-test-container {
-    width: 90%;
+    width: 80vw;
     padding-top: 4vh;
-    padding-left: 20vh;
+    align-self: center;
+}
+
+@media (max-width: 770px) {
+    .create-test-container {
+        width: 95vw;
+    }    
 }

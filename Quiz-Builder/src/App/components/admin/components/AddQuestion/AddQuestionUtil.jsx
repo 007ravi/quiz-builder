@@ -1,4 +1,4 @@
-const server = "http://localhost:3001";
+import { server } from '../../../../config/server.json';
 
 function addQuestion(QuestionObject) {
     fetch(`${server}/addQuestion`, {
