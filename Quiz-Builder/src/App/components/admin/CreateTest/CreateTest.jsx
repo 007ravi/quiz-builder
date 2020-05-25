@@ -3,6 +3,25 @@ import { Form, Button, Table, Modal } from 'react-bootstrap';
 import '../../../assets/styles/createTest.css';
 import { FetchQuestions, createTest } from './CreateTestUtil';
 
+function ErrorMessageModal(props) {
+    return (
+        <Modal
+            {...props}
+            aria-labelledby="contained-modal-title-vcenter">
+            <Modal.Header closeButton>
+                <Modal.Title id="contained-modal-title-vcenter">
+                    <h3>Error</h3>
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <Form>
+                    Make sure you entered all fields and added atleast one question.
+                </Form>
+            </Modal.Body>
+        </Modal>
+    );
+}
+
 function TestMessageModal(props) {
     return (
         <Modal
@@ -27,6 +46,7 @@ class CreateTest extends Component {
     state = {
         bodyData: this.tableBodyDataArray,
         testMessageModalShow: false,
+        errorMessageModalShow: false,
         Title: "",
         Time: "",
         testKey: "",
@@ -58,8 +78,14 @@ class CreateTest extends Component {
         })
     }
 
+    showErrorModal = () => {
+        this.setState({
+            errorMessageModalShow: true
+        })
+    }
+
     createTest = () => {
-        createTest(this.state , this.showModal)
+        createTest(this.state , this.showModal, this.showErrorModal)
         this.setState({Branch: "CSE"})
     }
 
@@ -111,6 +137,12 @@ class CreateTest extends Component {
                             window.location.reload();
                         }}
                         testkey={this.state.testKey}
+                    />
+                    <ErrorMessageModal
+                        show={this.state.errorMessageModalShow}
+                        onHide={() => {
+                            this.setState({ errorMessageModalShow: false })
+                        }}
                     />
                 </Form>
             </div>

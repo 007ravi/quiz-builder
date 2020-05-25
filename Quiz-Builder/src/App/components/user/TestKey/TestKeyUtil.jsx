@@ -1,6 +1,6 @@
 import { server } from '../../../config/server.json';
 
-function submitKey(testKey, props) {
+function submitKey(testKey, props, showErrorModal) {
     fetch(`${server}/getTestByKey`, {
         method: 'POST',
         headers: {
@@ -17,6 +17,9 @@ function submitKey(testKey, props) {
             sessionStorage.setItem("testId", result[0]._id);
             props.history.push('/user/test');
             window.location.reload();
+        }
+        else {
+            showErrorModal()
         }
     })
     .catch((error) => {

@@ -116,30 +116,32 @@ class Login extends Component {
     this.setState({ regMessageModalShow: true });
   }
 
+  showError = (errorMessage) => {
+    this.setState({
+      registerErrorMessage: errorMessage
+    })
+    this.showErrorMessage();
+  }
+
   registerUser = () => {
+    const emailPattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
     if (this.state.Name === '') {
-      this.setState({
-        registerErrorMessage: "Enter Name"
-      })
-      this.showErrorMessage();
+      this.showError("Enter Name");
     }
     else if (this.state.Email === '') {
-      this.setState({
-        registerErrorMessage: "Enter Email"
-      })
-      this.showErrorMessage();
+      this.showError("Enter Email");
+    }
+    else if (emailPattern.test(this.state.Email) === false) {
+      this.showError("Enter valid Email!");
     }
     else if (this.state.Password === '') {
-      this.setState({
-        registerErrorMessage: "Enter Password"
-      })
-      this.showErrorMessage();
+      this.showError("Enter Password");
+    }
+    else if (this.state.Password.length < 6) {
+        this.showError("Password length should be atleast 6");
     }
     else if (this.state.ConfirmPassword !== this.state.Password) {
-      this.setState({
-        registerErrorMessage: "Passwords do not match"
-      })
-      this.showErrorMessage();
+      this.showError("Passwords do not match");
     }
     else {
       registerUser({

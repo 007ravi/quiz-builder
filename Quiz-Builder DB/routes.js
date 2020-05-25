@@ -6,6 +6,10 @@ var test = require('./database/model.js').testModel;
 var result = require('./database/model.js').resultModal;
 var nodemailer = require('nodemailer');
 
+router.get("/", (req, res) => {
+    res.end("Quiz Builder API!")
+})
+
 router.post("/loginUser", (req, res) => {
     user.find({
         Email: req.body.Email,

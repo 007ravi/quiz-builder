@@ -65,7 +65,11 @@ class AddQuestion extends Component {
         Option3: '',
         Option4: '',
         Answer: '1',
-        Branch: 'CSE'
+        Branch: 'CSE',
+        questionModalErrorMessage: '',
+        messageStyle: {
+            display: 'none'
+        }
     }
 
     handleQuestions = (event) => {
@@ -76,14 +80,46 @@ class AddQuestion extends Component {
         })
     }
 
-    addQuestion = () => {
-        this.setState(this.props.hideAddQuestionModal)
-        addQuestion({
-            Question: this.state.Question,
-            CorrectAnswerNo: this.state.Answer,
-            Options: [this.state.Option1, this.state.Option2, this.state.Option3, this.state.Option4],
-            Branch: this.state.Branch
+    showErrorMessage = () => {
+        this.setState({
+          messageStyle: {
+            display: ''
+          }
         })
+      }
+
+    showError = (errorMessage) => {
+        this.setState({
+          questionModalErrorMessage: errorMessage
+        })
+        this.showErrorMessage();
+      }
+
+    addQuestion = () => {
+        if (this.state.Question === '') {
+            this.showError("Enter Question");
+        }
+        else if (this.state.Option1 === '') {
+            this.showError("Enter Option 1");
+        }
+        else if (this.state.Option2 === '') {
+            this.showError("Enter Option 2");
+        }
+        else if (this.state.Option3 === '') {
+            this.showError("Enter Option 3");
+        }
+        else if (this.state.Option4 === '') {
+            this.showError("Enter Option 4");
+        }
+        else {
+            this.setState(this.props.hideAddQuestionModal)
+            addQuestion({
+                Question: this.state.Question,
+                CorrectAnswerNo: this.state.Answer,
+                Options: [this.state.Option1, this.state.Option2, this.state.Option3, this.state.Option4],
+                Branch: this.state.Branch
+            })
+        }
     }
 
     render() {
@@ -103,6 +139,8 @@ class AddQuestion extends Component {
                         Answer: '1', Branch: 'CSE'
                     })
                 }}
+                errormessage={this.state.questionModalErrorMessage}
+                messagestyle={this.state.messageStyle}
             />
         )
     }

@@ -52,7 +52,7 @@ function AddQuestion(Question) {
     btn[Question._id].textContent = "Added";
 }
 
-function createTest(state, showModal) {
+function createTest(state, showModal, showErrorModal) {
     if (Questions.length > 0) {
         fetch(`${server}/createTest`, {
             method: 'POST',
@@ -73,7 +73,9 @@ function createTest(state, showModal) {
                 showModal(testId)
             })
     }
-    else { }
+    else { 
+        showErrorModal()
+    }
 }
 
 export {
