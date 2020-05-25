@@ -216,7 +216,7 @@ router.post('/sendMail', (req, res) => {
         service: "Yandex",
         auth: {
             user: "quizb",
-            pass: "Bc^ag6PhbE_jA9F"
+            pass: "rZgqKbSK$RfV5CA"
         }
     });
 
@@ -233,7 +233,7 @@ router.post('/sendMail', (req, res) => {
         if (error) {
             console.log(error);
         } else {
-            console.log('Email sent to ' + req.userEmail + ' : ' + info.response);
+            console.log('Email sent to ' + req.body.userEmail + ' : ' + info.response);
         }
         res.end("[]");
     });
