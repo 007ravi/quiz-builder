@@ -53,7 +53,7 @@ function AddQuestion(Question) {
 }
 
 function createTest(state, showModal, showErrorModal) {
-    if (Questions.length > 0) {
+    if (Questions.length > 0 && state.Title !== '' && state.Time !== '') {
         fetch(`${server}/createTest`, {
             method: 'POST',
             headers: {

@@ -141,6 +141,36 @@ router.post("/getTestsByBranch", (req, res) => {
         })
 })
 
+router.post("/getTestsByUser", (req, res) => {
+    let availableTest = [];
+    test.find({ Branch: req.body.Branch })
+        .then((testdata) => {
+            result.find({ "User.UserEmail": req.body.UserEmail })
+                .then((resultdata) => {
+                    for(let i = 0, flag = 1; i<testdata.length; i++, flag=1) {
+                        for(let j=0; j<resultdata.length; j++) {
+                            if (testdata[i].id == resultdata[j].Test)
+                                 flag = 0;
+                        }
+                        if(flag)
+                            availableTest.push(testdata[i])
+                    }
+                    res.end(JSON.stringify(
+                        availableTest
+                    ))
+                })
+                .catch((err) => {
+                    console.log("Consoling Error : " + err);
+                    res.end("[]");
+                })
+        })
+        .catch((err) => {
+            console.log("Consoling Error : " + err);
+            res.end("[]");
+        })
+})
+
+
 router.post("/getTestByKey", (req, res) => {
     test.find({
         Id: req.body.Key
