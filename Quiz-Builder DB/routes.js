@@ -1,9 +1,6 @@
 var express = require("express");
 var router = express.Router();
-var user = require('./database/model.js').userModel;
-var question = require('./database/model.js').questionModel;
-var test = require('./database/model.js').testModel;
-var result = require('./database/model.js').resultModal;
+var {result, user, question, test} = require('./database/model.js');
 var nodemailer = require('nodemailer');
 
 router.get("/", (req, res) => {
@@ -169,7 +166,6 @@ router.post("/getTestsByUser", (req, res) => {
             res.end("[]");
         })
 })
-
 
 router.post("/getTestByKey", (req, res) => {
     test.find({
