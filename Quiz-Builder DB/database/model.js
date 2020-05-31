@@ -1,30 +1,30 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const question = new Schema({
+const question = mongoose.model("Question",new Schema({
     Question: String,
     Options: [],
     CorrectAnswerNo: Number,
     Branch: String
-});
+}),"Question");
 
-const user = new Schema({
+const user = mongoose.model("Users",new Schema({
     Name: String,
     Password: String,
     Email: { type:String, unique: true },
     Type: String,
     Branch: String
-});
+}),"Users");
 
-const test = new Schema({
+const test = mongoose.model("Tests",new Schema({
     Title: String,
     Id: String,
     Questions: [{}],
     Time: Number,
     Branch: String
-});
+}),"Tests");
 
-const result = new Schema({
+const result = mongoose.model("Results",new Schema({
     Score: String,
     CreatedAt: { type: Date, default: Date.now },
     Total: String,
@@ -33,9 +33,9 @@ const result = new Schema({
         UserName: String,
         UserEmail: String
     }
-})
+}),"Results");
 
-module.exports.resultModal = mongoose.model("Results", result, "Results");
-module.exports.userModel = mongoose.model("Users", user, "Users");
-module.exports.questionModel = mongoose.model("Question", question, "Question");
-module.exports.testModel = mongoose.model("Tests", test, "Tests");
+exports.result = result;
+exports.user = user;
+exports.question = question;
+exports.test = test;
