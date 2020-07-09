@@ -12,7 +12,7 @@ pass: admin
 ## Setup
 
 ```
-https://github.com/Ayush-Walia/Quiz-Builder-React
+git clone https://github.com/Ayush-Walia/Quiz-Builder-React
 cd Quiz-Builder DB
 npm i && npm start
 
