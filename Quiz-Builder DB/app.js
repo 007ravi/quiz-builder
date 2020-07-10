@@ -7,7 +7,8 @@ const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 3001;
 
-mongoose.connect("mongodb://localhost:27017/quizBuilderReact", { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
+// mongoose.connect("mongodb://localhost:27017/quizBuilderReact", { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
+mongoose.connect("mongodb+srv://007ravi:m!shr@007@cluster0.u4h8h.mongodb.net/quizBuilderReact", { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
 .then(() => {
     console.log("Database Connected!");
 })

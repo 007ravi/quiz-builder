@@ -1,6 +1,6 @@
 ## Website Link 
 
-https://quizbuild.herokuapp.com/
+https://quiz-builder-react.herokuapp.com/
 
 ## Admin Credentials
 
@@ -12,7 +12,7 @@ pass: admin
 ## Setup
 
 ```
-git clone https://github.com/Ayush-Walia/Quiz-Builder-React
+git clone https://github.com/007ravi/quiz-builder
 cd Quiz-Builder DB
 npm i && npm start
 

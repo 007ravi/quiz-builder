@@ -1,7 +1,6 @@
 {
-  "name": "appApi",
+  "name": "appapi",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "nodemon app.js"
@@ -17,5 +16,6 @@
     "morgan": "^1.10.0",
     "nodemailer": "^6.4.6",
     "nodemon": "^1.19.4"
-  }
+  },
+  "description": ""
 }
